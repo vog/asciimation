@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+    <head>
+        <title>ASCIImation.de</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="asciimation.js"></script>
+        <script type="text/javascript">
+            function E(id) {
+                return document.getElementById(id);
+            }
+            function start_asciimation() {
+                play(E('animation'), E('source').contentDocument.body.textContent);
+            }
+            function select_asciimation(evt) {
+                E('source').src = 'movies/' + evt.target.textContent;
+            }
+            function register_listeners() {
+                E('source').addEventListener('load', start_asciimation, false);
+                var selectButtons = E('select').getElementsByTagName('button');
+                for (var i = 0; i < selectButtons.length; i++) {
+                    selectButtons[i].addEventListener('click', select_asciimation, false);
+                }
+            }
+            addEventListener('load', register_listeners, false);
+        </script>
+        <style type="text/css">
+            pre {
+                margin-top: 5em;
+                margin-bottom: 5em;
+                background-color: #ddd;
+            }
+            iframe {
+                width: 100%;
+                height: 15em;
+                border: solid 1px #777;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>ASCIImation.de</h1>
+        <p id="select">
+            <button>explosion.txt</button>
+            <button>rache.txt</button>
+            <button>steinrutsch.txt</button>
+            <button>computerwar.txt</button>
+        </p>
+        <pre id="animation"></pre>
+        <iframe id="source" src="about:blank"></iframe>
+    </body>
+</html>
