@@ -14,26 +14,26 @@ function load(s)
     }
     var a = [];
     for (var i = 0; i < (lines.length-3)/(height+1); i++) {
-        var i_sep = 1 + (height+1)*(i+1);
+        var sepIndex = 1 + (height+1)*(i+1);
         var f = {};
-        f.duration = lines[i_sep].substring(sep.length+1);
-        f.frame = lines.slice(i_sep-height, i_sep).join('\n');
+        f.duration = lines[sepIndex].substring(sep.length+1);
+        f.frame = lines.slice(sepIndex-height, sepIndex).join('\n');
         a.push(f);
     }
     return a;
 }
 
-function play(element, asciimation_string)
+function play(element, asciimationString)
 {
-    var a = load(asciimation_string);
+    var a = load(asciimationString);
     var pos = -1;
-    var next_image = function() {
+    var nextImage = function() {
         pos++;
         if (pos >= a.length) {
             return;
         }
         element.textContent = a[pos].frame;
-        setTimeout(next_image, a[pos].duration * 1000);
+        setTimeout(nextImage, a[pos].duration * 1000);
     }
-    next_image();
+    nextImage();
 }

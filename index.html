@@ -8,20 +8,20 @@
             function E(id) {
                 return document.getElementById(id);
             }
-            function start_asciimation() {
+            function startAsciimation() {
                 play(E('animation'), E('source').contentDocument.body.textContent);
             }
-            function select_asciimation(evt) {
+            function selectAsciimation(evt) {
                 E('source').src = 'movies/' + evt.target.textContent;
             }
-            function register_listeners() {
-                E('source').addEventListener('load', start_asciimation, false);
+            function registerListeners() {
+                E('source').addEventListener('load', startAsciimation, false);
                 var selectButtons = E('select').getElementsByTagName('button');
                 for (var i = 0; i < selectButtons.length; i++) {
-                    selectButtons[i].addEventListener('click', select_asciimation, false);
+                    selectButtons[i].addEventListener('click', selectAsciimation, false);
                 }
             }
-            addEventListener('load', register_listeners, false);
+            addEventListener('load', registerListeners, false);
         </script>
         <style type="text/css">
             body {
